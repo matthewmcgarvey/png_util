@@ -1,24 +1,15 @@
-require "minitest/autorun"
-require "../src/stumpy_png"
+require "spec"
+require "../src/png_util"
 
-module StumpyPNG
-  class StumpyPNGAPITest < Minitest::Test
-    def test_path_read_write
-      canvas = StumpyPNG.read("./spec/png_suite/basic_formats/basn0g01.png")
-      StumpyPNG.write(canvas, "/tmp/test.png")
-    end
-
-    def test_io_read_write
-      in_io = IO::Memory.new
-      File.open("./spec/png_suite/basic_formats/basn0g01.png", "rb") do |file|
-        IO.copy(file, in_io)
-      end
-      in_io.rewind
-
-      canvas = StumpyPNG.read(in_io)
-
-      out_io = IO::Memory.new
-      StumpyPNG.write(canvas, out_io)
+describe PNGUtil do
+  describe "resizing" do
+    it "works" do
+      canvas = PNGUtil.read("./spec/test.png")
+      canvas.resize(120, 120)
+      PNGUtil.write(canvas, "/tmp/test.png")
+      new_canvas = PNGUtil.read("/tmp/test.png")
+      new_canvas.height.should eq(120)
+      new_canvas.width.should eq(120)
     end
   end
 end

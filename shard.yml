@@ -1,22 +1,12 @@
-name: stumpy_png
-version: 5.0.2
-
+name: png_util
+version: 0.1.0
+license: MIT
 authors:
-  - Leon Rische <leon.rische@me.com>
+  - Matthew McGarvey
 
-dependencies:
-  stumpy_core:
-    github: stumpycr/stumpy_core
-    version: ~> 1.9
+crystal: ">= 0.35.1"
 
 development_dependencies:
-  minitest:
-    github: ysbaddaden/minitest.cr
-    version: ~> 0.5
   ameba:
     github: crystal-ameba/ameba
     version: ~> 0.13.0
-
-crystal: ">= 0.35.1, < 2.0.0"
-
-license: MIT
